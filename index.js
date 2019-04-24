@@ -3,15 +3,19 @@ let s = "Organisms of many species are specialized into male and female varietie
 s = s.split(' ');
 let i = 0;
 let g ;
+let updateProgress = (x)=>{
+    document.getElementsByClassName("progress-bar")[0].setAttribute("style", "width: "+x/(s.length/100)+"%");
+
+}
 let play = () => {    
      g = setInterval(()=> {
         if (i<s.length)
         text.innerText = s[i]
-        console.log(i);
         i++;
+        updateProgress(i);
         if(i==s.length){
          clearInterval(g);
-        console.log("yoo");
+
         }
     },180) 
 };
@@ -33,4 +37,32 @@ let control = ()=> {
     }
 
 }
+//10 word back funciton
+let back = ()=>{
+    if(i>10)
+    i = i-10;
+    updateProgress(i);
+
+}
+// 10 word forward functio\
+let forward = ()=>{
+    if(i<s.length-11)
+    i = i+10;
+    updateProgress(i);
+
+}
+
+// click on a position in the scrollbar
+document.getElementsByClassName('progress')[0].addEventListener('click', function (e) {
+    var x = e.pageX - this.offsetLeft, // or e.offsetX (less support, though)
+        y = e.pageY - this.offsetTop,  // or e.offsetY
+        clickedValue = x * this.max / this.offsetWidth;
+    console.log(x, y);
+    console.log(window.innerWidth);
+    x= x/window.innerWidth*100
+    console.log(x, y);
+    i = Math.floor(x/100*(s.length));
+    updateProgress(i);
+});
+
 //hello();
