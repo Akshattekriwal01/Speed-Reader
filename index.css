@@ -50,6 +50,17 @@ body {
   .progress-bar {
   background: -webkit-linear-gradient(left, #33156d 0%,#f282bc 100%); /* Chrome10-25,Safari5.1-6 */
   }
+  #speed {
+    position: absolute;
+    bottom: 29%;
+    left:33% ;
+    padding-left: 00%;
+    padding-right: 30%;
+    height: 10px;
+  }
+  #speed-b {
+  background: -webkit-linear-gradient(left, #33156d 0%,#f282bc 100%); /* Chrome10-25,Safari5.1-6 */
+  }
   .controller:focus, #back:focus, #forward:focus {
     outline: none !important;
   }

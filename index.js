@@ -3,6 +3,7 @@ let s = "Organisms of many species are specialized into male and female varietie
 s = s.split(' ');
 let i = 0;
 let g ;
+let speed = 180
 let updateProgress = (x)=>{
     document.getElementsByClassName("progress-bar")[0].setAttribute("style", "width: "+x/(s.length/100)+"%");
 
@@ -15,9 +16,13 @@ let play = () => {
         updateProgress(i);
         if(i==s.length){
          clearInterval(g);
-
+         document.getElementsByClassName("controller")[0].innerText = "Restart"
+         i =0 ;
+         if(num%2 == 1){
+             num++;
+         }
         }
-    },180) 
+    },speed) 
 };
 let pause = ()=>{
     clearInterval(g);
@@ -57,12 +62,21 @@ document.getElementsByClassName('progress')[0].addEventListener('click', functio
     var x = e.pageX - this.offsetLeft, // or e.offsetX (less support, though)
         y = e.pageY - this.offsetTop,  // or e.offsetY
         clickedValue = x * this.max / this.offsetWidth;
+    x= x/window.innerWidth*100
+    i = Math.floor(x/100*(s.length));
+    updateProgress(i);
+});
+
+//click on the bar to change the speed
+document.getElementById("speed").addEventListener('click', function (e) {
+    var x = e.pageX - this.offsetLeft, // or e.offsetX (less support, though)
+        y = e.pageY - this.offsetTop,  // or e.offsetY
+        clickedValue = x * this.max / this.offsetWidth;
     console.log(x, y);
     console.log(window.innerWidth);
     x= x/window.innerWidth*100
     console.log(x, y);
-    i = Math.floor(x/100*(s.length));
-    updateProgress(i);
+    //i = Math.floor(x/100*(s.length));
 });
 
 //hello();
