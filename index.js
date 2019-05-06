@@ -3,9 +3,17 @@ let s = "Organisms of many species are specialized into male and female varietie
 s = s.split(' ');
 let i = 0;
 let g ;
-let speed = 180
+let dt1;
+let dt2;
+let speed = 130;
 let updateProgress = (x)=>{
+    
     document.getElementsByClassName("progress-bar")[0].setAttribute("style", "width: "+x/(s.length/100)+"%");
+
+}
+let updateSpeed = (x)=>{
+    console.log("x: "+x)
+    document.getElementById("speed-b").setAttribute("style", "width: "+x*100/30+"%");
 
 }
 let play = () => {    
@@ -15,7 +23,11 @@ let play = () => {
         i++;
         updateProgress(i);
         if(i==s.length){
+        dt2 =  new Date()
+        console.log("wpm ="+ 60000/speed)
+         console.log("rwpm= "+ s.length/((dt2.getTime()-dt1.getTime())/1000)*60) ;
          clearInterval(g);
+
          document.getElementsByClassName("controller")[0].innerText = "Restart"
          i =0 ;
          if(num%2 == 1){
@@ -30,6 +42,9 @@ let pause = ()=>{
 let num = 0;
 let control = ()=> {
     if(num%2 ==0){
+         dt1 = new Date()
+        console.log(dt1.getTime())
+
         document.getElementsByClassName("controller")[0].innerText = "Pause"
         num++ ;       
         play();
@@ -75,8 +90,14 @@ document.getElementById("speed").addEventListener('click', function (e) {
     console.log(x, y);
     console.log(window.innerWidth);
     x= x/window.innerWidth*100
-    console.log(x, y);
+    console.log(150+(x)*(600.38-150)/30, y);  //sets the range between 150wpm to 600wpm
     //i = Math.floor(x/100*(s.length));
+    let inputWpm = 150+(x)*(600.38-150)/30   // calculates the wpm based on input pixels
+    speed = 60000/inputWpm
+    console.log("iwpm :"+ inputWpm)
+    updateSpeed(x); // updates the bar of speed
+    console.log("speed :"+ speed)
+    document.getElementById("wpm").innerText = "wpm "+ Math.floor(60000/speed);
 });
 
 //hello();

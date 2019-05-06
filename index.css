@@ -2,12 +2,15 @@
 body {
     height:  100vh ;
     background-color: red; /* For browsers that do not support gradients */
+   z-index: 2;
     background-image: linear-gradient(to top left, #c61bc4, #ddccdc); /* Standard syntax (must be last) */
+    font-family: 'Varela Round', sans-serif; 
+    color:#9811af
   }
 #text{
     color: white;
     text-align:center;
-    font-family: 'Varela Round', sans-serif;
+    
     font-size : 15vh;
    /* padding: 45vh */
    position: absolute;
@@ -44,23 +47,28 @@ body {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.294),0 17px 50px 0 rgba(0,0,0,0.19)
 }
 
-  .progress {
+  #prog {
     height: 10px;
+    border-radius: 0%
+    
   }
-  .progress-bar {
+  .progress-bar  {
+  
   background: -webkit-linear-gradient(left, #33156d 0%,#f282bc 100%); /* Chrome10-25,Safari5.1-6 */
+  transition: width .2s ease;
+  
   }
   #speed {
-    position: absolute;
+    z-index: 1;
     bottom: 29%;
-    left:33% ;
-    padding-left: 00%;
-    padding-right: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
     height: 10px;
   }
-  #speed-b {
+#speed-b {
   background: -webkit-linear-gradient(left, #33156d 0%,#f282bc 100%); /* Chrome10-25,Safari5.1-6 */
   }
+  
   .controller:focus, #back:focus, #forward:focus {
     outline: none !important;
   }
